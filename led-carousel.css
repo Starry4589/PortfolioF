@@ -1,0 +1,246 @@
+/* led-carousel.css — concert LED wall style for the carousel.
+   No frame or border: the screen is a translucent, glowing pixel panel,
+   and the controls float underneath it. */
+
+/* The old LED box becomes an invisible holder (size/position still from style.css) */
+.led.is-carousel {
+  height: min(100%, 560px);
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  overflow: visible;
+}
+
+/* style.css hides the heading/typing line on .led.open; the Home slide needs them */
+.led.is-carousel .lc-home h1,
+.led.is-carousel .lc-home .type {
+  display: block !important;
+}
+
+/* Old panel + buttons are replaced by the carousel (kept in the DOM, hidden) */
+.led.is-carousel > .panel,
+.led.is-carousel > .btns {
+  display: none !important;
+}
+
+.lc {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  gap: .55rem;
+}
+
+/* ---- The LED screen ---- */
+.lc-viewport {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  touch-action: pan-y;
+  border-radius: 6px;
+  /* translucent so the stage lights show through */
+  background:
+    linear-gradient(180deg, rgba(48, 12, 82,.95), rgba(16, 4, 34, .65));
+  -webkit-backdrop-filter: blur(3px) saturate(1.25);
+  backdrop-filter: blur(3px) saturate(1.25);
+  /* light spill instead of a border */
+  box-shadow:
+    0 0 22px var(--theme-glow),
+    inset 0 0 34px rgba(255, 112, 166, .14);
+}
+
+/* LED pixel grid */
+.lc-viewport::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(0deg, rgba(0, 0, 0, .17) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(90deg, rgba(0, 0, 0, .17) 0 1px, transparent 1px 4px);
+}
+.lc-slide .p-body { color: rgba(255,255,255,1); }
+
+/* Soft glare across the screen */
+.lc-viewport::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, .08), transparent 38%);
+}
+
+.lc-track {
+  display: flex;
+  height: 100%;
+  transition: transform .45s cubic-bezier(.22, .8, .3, 1);
+  will-change: transform;
+}
+
+.lc-slide {
+  box-sizing: border-box;
+  flex: 0 0 100%;
+  min-width: 0;
+  height: 100%;
+  padding: .8rem 1rem .4rem;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+/* Content glows like lit pixels */
+.lc-slide .p-title {
+  font-size: 1.9rem;
+}
+.lc-slide .p-body {
+  font-size: 1.3rem;
+  text-shadow: 0 0 7px rgba(255, 140, 190, .4);
+}
+
+.lc-slide .p-body {
+  overscroll-behavior: contain;
+  padding-bottom: 1.1rem;
+  /* fade out at the bottom edge instead of a hard cut */
+  -webkit-mask-image: linear-gradient(#000 calc(100% - 22px), transparent);
+  mask-image: linear-gradient(#000 calc(100% - 22px), transparent);
+}
+
+/* No boxes with borders inside the screen */
+.lc-slide .p-body .bio,
+.lc-slide .p-body .card {
+  border: 0;
+  background: rgba(255, 255, 255, .05);
+}
+
+.lc-slide .act:first-child {
+  margin-top: 0 !important;
+}
+
+/* Home slide = the original LED heading and typing line */
+.lc-home {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.lc-hint {
+  margin-top: .8rem;
+  font-size: 1rem;
+  color: var(--pink);
+  opacity: .75;
+}
+
+/* ---- Controls (float under the screen, no frame) ---- */
+.lc-bar {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+}
+
+.lc-arrow {
+  width: 2.2rem;
+  padding: .1rem 0 .2rem;
+  font-size: 1.2rem;
+  line-height: 1;
+  text-align: center;
+}
+
+.lc-dots {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.lc-dot {
+  position: relative;
+  width: 14px;
+  height: 18px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.lc-dot::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 99px;
+  background: var(--theme-soft);
+  opacity: .45;
+  transform: translate(-50%, -50%);
+  transition: width .3s, opacity .3s, box-shadow .3s;
+}
+
+.lc-dot:hover::after { opacity: .85; }
+
+.lc-dot.on::after {
+  width: 20px;
+  opacity: 1;
+  background: var(--theme-primary);
+  box-shadow: 0 0 8px var(--theme-glow);
+}
+
+/* Small gap between the dots of different sections */
+.lc-dot.gap { margin-left: 8px; }
+
+.lc-tabs {
+  flex: none;
+  display: flex;
+  gap: .4rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.lc-tab { padding: .3rem .8rem; }
+
+.lc-arrow:focus-visible,
+.lc-tab:focus-visible,
+.lc-dot:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.lc-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---- Small screens ---- */
+@media (max-width: 480px) {
+  .lc-slide { padding: .65rem .7rem .3rem; }
+  .lc-tab { padding: .3rem .55rem; }
+  .lc-dot { width: 11px; }
+  .lc-dot.on::after { width: 16px; }
+  .lc-dot.gap { margin-left: 5px; }
+}
+
+@media (max-height: 520px) {
+  .lc { gap: .3rem; }
+  .lc-arrow { width: 1.8rem; font-size: 1rem; }
+  .lc-tab { padding: .2rem .6rem; }
+}
+
+/* Very short landscape phones: keep the screen, drop the tab row */
+@media screen and (orientation: landscape) and (max-height: 380px) {
+  .lc-tabs { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lc-track, .lc-dot::after { transition: none; }
+}
