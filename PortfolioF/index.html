@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Developer Portfolio | Concert Stage Theme</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="concert-extras.css">
+<link rel="stylesheet" href="maze-game.css">
+<link rel="stylesheet" href="led-carousel.css">
+<link rel="stylesheet" href="responsive-fix.css">
+</head>
+
+<body data-seat="vip">
+
+<div class="bg-butterflies"></div>
+
+<!-- ENTRANCE TICKET -->
+<div class="entrance" id="entrance">
+  <div class="wrap">
+    <div class="e-title display">🎟️ Arena Entrance Pass</div>
+
+    <div class="controls">
+      <div class="cg">
+        <span class="lbl">Seat Tier</span>
+        <div>
+          <button class="seat-btn active" data-k="vip" onclick="setSeat('vip')">VIP Pass</button>
+          <button class="seat-btn" data-k="back" onclick="setSeat('back')">Backstage Pass</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="badge-route" id="route"></div>
+
+    <div class="ticket" onclick="tearTicket()">
+      <div class="t-main">
+        <span class="t-flag">★ WORLD TOUR 2026 ★</span>
+        <h1>Ericka's LIVE</h1>
+        <div class="t-artist">FEATURING: FRONT-END DEVELOPER</div>
+
+        <div class="t-details">
+          <div>
+            <h4>STAGE VENUE</h4>
+            <p>MAIN ARENA</p>
+          </div>
+          <div>
+            <h4>DATE</h4>
+            <p>NOW PLAYING</p>
+          </div>
+          <div>
+            <h4>ACCESS</h4>
+            <p id="tAccess">ALL AREAS</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="stub">
+        <div class="seat-info" id="tSeat"></div>
+        <div class="pass" id="tPass"></div>
+        <div class="barcode"></div>
+        <div class="bnum">9823-2026</div>
+      </div>
+    </div>
+
+    <button class="tap" onclick="tearTicket()">Tear ticket &amp; open curtains ➔</button>
+  </div>
+</div>
+
+<!-- STAGE CURTAINS -->
+<div class="curtains" id="curtains">
+  <div class="curtain cl"><i></i></div>
+  <div class="curtain cr"><i></i></div>
+</div>
+
+<!-- EXIT SCREEN -->
+<div class="bye" id="bye">
+  <div class="bf">🦋</div>
+  <h2>Thank you for coming!</h2>
+  <p>Hope you enjoyed the show. See you at the next tour date.</p>
+  <button class="tap" onclick="resetTicket(); buyAgain()">🎟️ Buy another ticket</button>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="nav">
+  <div class="brand">🦋 STAGE // PORTFOLIO</div>
+
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span>★ WORLD TOUR 2026 ★</span>
+    <span>FRONT-END DEV ★ UI DESIGNER</span>
+    <span>★ AUTOMATED WASTE SORTING KIOSK ★</span>
+    <span>CONCERT STAGE THEME</span>
+    <span>★ HTML5 / CSS 3D TRANSFORMS / JS ★</span>
+    <span>PHP &amp; PYTHON SERIAL BRIDGES</span>
+    <span>★ WORLD TOUR 2026 ★</span>
+    <span>FRONT-END DEV ★ UI DESIGNER</span>
+    <span>★ AUTOMATED WASTE SORTING KIOSK ★</span>
+    <span>CONCERT STAGE THEME</span>
+    <span>★ HTML5 / CSS 3D TRANSFORMS / JS ★</span>
+    <span>PHP &amp; PYTHON SERIAL BRIDGES</span>
+    <span>★ WORLD TOUR 2026 ★</span>
+    <span>FRONT-END DEV ★ UI DESIGNER</span>
+    <span>★ AUTOMATED WASTE SORTING KIOSK ★</span>
+    <span>CONCERT STAGE THEME</span>
+    <span>★ HTML5 / CSS 3D TRANSFORMS / JS ★</span>
+    <span>PHP &amp; PYTHON SERIAL BRIDGES</span>
+    <span>★ WORLD TOUR 2026 ★</span>
+    <span>FRONT-END DEV ★ UI DESIGNER</span>
+    <span>★ AUTOMATED WASTE SORTING KIOSK ★</span>
+    <span>CONCERT STAGE THEME</span>
+    <span>★ HTML5 / CSS 3D TRANSFORMS / JS ★</span>
+    <span>PHP &amp; PYTHON SERIAL BRIDGES</span>
+  </div>
+</div>
+
+  
+    
+
+
+  <div class="views">
+    <button class="active" data-k="vip" onclick="setSeat('vip')">VIP</button>
+    <button data-k="back" onclick="setSeat('back')">Backstage</button>
+    <button class="exit" onclick="exitShow()">Exit ➜</button>
+  </div>
+</nav>
+
+<!-- MAIN STAGE -->
+<main class="hero" id="hero">
+<!-- FLUFFY CLOUD DECORATIONS -->
+
+<div class="clouds" aria-hidden="true">
+  <div class="cloud cloud-left"></div>
+  <div class="cloud cloud-right"></div>
+  <div class="cloud cloud-bottom-left"></div>
+  <div class="cloud cloud-top-right"></div>
+</div>
+  <!-- VIP MAIN STAGE -->
+  <div class="scene s-vip">
+    <div class="truss" data-n="7"></div>
+
+    <div class="beam" style="left:16%"></div>
+    <div class="beam r" style="left:64%"></div>
+
+    <div class="side-stack left">
+      <div class="stack-light"></div>
+      <div class="stack-speaker"></div>
+      <div class="stack-speaker"></div>
+      <div class="stack-light"></div>
+    </div>
+
+    <div class="side-stack right">
+      <div class="stack-light"></div>
+      <div class="stack-speaker"></div>
+      <div class="stack-speaker"></div>
+      <div class="stack-light"></div>
+    </div>
+
+    <div class="fp"><i></i></div>
+
+    <!-- DECORATIVE BUTTERFLY -->
+    <div class="stage-butterfly">
+      <svg viewBox="0 0 600 500" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+        <g class="outline">
+          <path d="M300 250 C260 170 180 65 100 55 C45 50 25 105 65 155 C25 220 70 280 170 285 C115 330 100 400 150 445 C200 480 270 390 300 250Z"/>
+          <path d="M300 250 C340 170 420 65 500 55 C555 50 575 105 535 155 C575 220 530 280 430 285 C485 330 500 400 450 445 C400 480 330 390 300 250Z"/>
+          <path d="M300 250 C250 210 190 125 125 135 C75 145 85 185 115 195 C95 235 150 270 220 250 C250 245 280 250 300 250Z"/>
+          <path d="M300 250 C350 210 410 125 475 135 C525 145 515 185 485 195 C505 235 450 270 380 250 C350 245 320 250 300 250Z"/>
+          <path d="M300 250 C260 275 220 305 180 320 C130 340 145 385 180 405 C220 435 275 350 300 250Z"/>
+          <path d="M300 250 C340 275 380 305 420 320 C470 340 455 385 420 405 C380 435 325 350 300 250Z"/>
+        </g>
+
+        <g class="detail">
+          <path d="M300 250 Q220 175 115 155"/>
+          <path d="M300 250 Q220 205 120 190"/>
+          <path d="M300 250 Q220 235 150 245"/>
+          <path d="M300 250 Q240 300 180 330"/>
+          <path d="M300 250 Q250 340 210 390"/>
+
+          <path d="M300 250 Q380 175 485 155"/>
+          <path d="M300 250 Q380 205 480 190"/>
+          <path d="M300 250 Q380 235 450 245"/>
+          <path d="M300 250 Q360 300 420 330"/>
+          <path d="M300 250 Q350 340 390 390"/>
+        </g>
+
+        <g class="flower">
+          <g transform="translate(160 175)">
+            <circle cx="0" cy="-9" r="5"/>
+            <circle cx="9" cy="0" r="5"/>
+            <circle cx="0" cy="9" r="5"/>
+            <circle cx="-9" cy="0" r="5"/>
+            <circle r="3"/>
+          </g>
+
+          <g transform="translate(220 205)">
+            <circle cx="0" cy="-7" r="4"/>
+            <circle cx="7" cy="0" r="4"/>
+            <circle cx="0" cy="7" r="4"/>
+            <circle cx="-7" cy="0" r="4"/>
+            <circle r="2.5"/>
+          </g>
+
+          <g transform="translate(180 235)">
+            <circle cx="0" cy="-6" r="3.5"/>
+            <circle cx="6" cy="0" r="3.5"/>
+            <circle cx="0" cy="6" r="3.5"/>
+            <circle cx="-6" cy="0" r="3.5"/>
+            <circle r="2"/>
+          </g>
+
+          <g transform="translate(160 175) scale(-1 1)">
+            <circle cx="0" cy="-9" r="5"/>
+            <circle cx="9" cy="0" r="5"/>
+            <circle cx="0" cy="9" r="5"/>
+            <circle cx="-9" cy="0" r="5"/>
+          </g>
+
+          <g transform="translate(600 0) scale(-1 1)">
+            <g transform="translate(160 175)">
+              <circle cx="0" cy="-9" r="5"/>
+              <circle cx="9" cy="0" r="5"/>
+              <circle cx="0" cy="9" r="5"/>
+              <circle cx="-9" cy="0" r="5"/>
+              <circle r="3"/>
+            </g>
+
+            <g transform="translate(220 205)">
+              <circle cx="0" cy="-7" r="4"/>
+              <circle cx="7" cy="0" r="4"/>
+              <circle cx="0" cy="7" r="4"/>
+              <circle cx="-7" cy="0" r="4"/>
+              <circle r="2.5"/>
+            </g>
+
+            <g transform="translate(180 235)">
+              <circle cx="0" cy="-6" r="3.5"/>
+              <circle cx="6" cy="0" r="3.5"/>
+              <circle cx="0" cy="6" r="3.5"/>
+              <circle cx="-6" cy="0" r="3.5"/>
+              <circle r="2"/>
+            </g>
+          </g>
+        </g>
+
+        <g class="dots">
+          <circle cx="115" cy="145" r="2"/>
+          <circle cx="135" cy="140" r="2"/>
+          <circle cx="155" cy="140" r="2"/>
+          <circle cx="175" cy="145" r="2"/>
+          <circle cx="195" cy="155" r="2"/>
+          <circle cx="215" cy="170" r="2"/>
+          <circle cx="485" cy="145" r="2"/>
+          <circle cx="465" cy="140" r="2"/>
+          <circle cx="445" cy="140" r="2"/>
+          <circle cx="425" cy="145" r="2"/>
+          <circle cx="405" cy="155" r="2"/>
+          <circle cx="385" cy="170" r="2"/>
+        </g>
+
+        <g class="outline">
+          <ellipse cx="300" cy="225" rx="7" ry="9"/>
+          <path d="M300 235 C286 255 292 280 300 300 C308 280 314 255 300 235Z"/>
+          <path d="M297 218 Q275 180 255 175"/>
+          <path d="M303 218 Q325 180 345 175"/>
+          <circle cx="255" cy="175" r="3"/>
+          <circle cx="345" cy="175" r="3"/>
+        </g>
+      </svg>
+    </div>
+<img
+  src="sakura_standalone.svg"
+  alt="Sakura Hoshi animated anime idol"
+  class="idol-gif"/>
+    <div class="deck">
+      <div class="stairs">
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+    </div>
+
+    <div class="fog"></div>
+  </div>
+
+  <!-- BACKSTAGE ROOM -->
+  <div class="scene s-back">
+    <div class="back-truss"></div>
+    <div class="back-wall"></div>
+    <div class="onair">ON AIR // GREEN ROOM</div>
+
+    <div class="wall-poster left-poster">
+      <h4>WORLD TOUR</h4>
+      <div class="p-art">🎸</div>
+      <span>LIVE 2026</span>
+    </div>
+
+    <div class="wall-poster right-poster">
+      <h4>VIP ACCESS</h4>
+      <div class="p-art">🦋</div>
+      <span>BACKSTAGE</span>
+    </div>
+
+    <!-- BACKSTAGE VIP ID PASS -->
+    <div class="pcw" id="postcard">
+      <div class="pc">
+        <div class="badge-top">★ BACKSTAGE VIP ID PASS ★</div>
+
+        <div class="badge-body">
+          <div class="badge-photo-area">
+            <div class="badge-avatar">🦋</div>
+
+            <div class="badge-info">
+              <h3>DEV PORTFOLIO LIVE</h3>
+              <p>All-Access VIP Guest &bull; Green Room</p>
+            </div>
+          </div>
+
+          <div class="badge-form">
+            <input id="pcName" placeholder="Your Name / Artist Guest" autocomplete="name">
+            <input id="pcMail" placeholder="Your Email Address" autocomplete="email">
+            <textarea id="pcMsg" placeholder="Leave a message or collaboration note..."></textarea>
+          </div>
+
+          <div class="badge-footer">
+            <div class="badge-barcode"></div>
+            <button class="mailbtn" id="pcBtn" onclick="sendCard()">Check In ✉️</button>
+          </div>
+        </div>
+      </div>
+    </div>
+ </div> 
+    <!-- LED SCREEN -->
+    <div class="zone">
+      <div class="led" id="led">
+        <h1>DEV PORTFOLIO LIVE</h1>
+
+        <div class="type">
+          <span id="type"></span>
+          <span class="cursor"></span>
+        </div>
+
+        <div class="panel">
+          <div class="p-title" id="pTitle"></div>
+          <div class="p-body" id="pBody"></div>
+        </div>
+
+        <div class="btns">
+          <button class="led-btn" data-p="about" onclick="openPanel('about',this)">About Artist</button>
+          <button class="led-btn" data-p="skills" onclick="openPanel('skills',this)">Setlist Skills</button>
+          <button class="led-btn" data-p="projects" onclick="openPanel('projects',this)">World Tour Projects</button>
+          <button class="led-btn min" onclick="closePanel()">▾ Minimize</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  &copy; 2026 Developer Portfolio. Concert Stage Theme.
+</footer>
+
+<!-- ABOUT TEMPLATE -->
+
+<!-- ABOUT TEMPLATE -->
+<template id="tmpl-about">
+  <div class="bio">
+    <p>
+      <strong>Meet the Developer:</strong>
+      I'm an Information Technology student who enjoys turning ideas
+      into functional systems and interactive digital experiences.
+      I have hands-on experience building websites, developing
+      school projects, designing user interfaces, and experimenting
+      with hardware automation using Arduino.
+    </p>
+
+    <p>
+      My projects include a system called SRTR, a K-pop merchandise
+      e-commerce website, an Arduino-based smoke detection prototype,
+      and this interactive concert-themed portfolio. I enjoy learning
+      through actual implementation, solving technical problems,
+      and connecting software with hardware.
+    </p>
+
+    <div class="stats">
+      <div class="stat">
+        <h4>My Main Focus</h4>
+        <p>Web Development &amp; UI Design</p>
+      </div>
+
+      <div class="stat">
+        <h4>System Development</h4>
+        <p>PHP &amp; Database-Driven Projects</p>
+      </div>
+
+      <div class="stat">
+        <h4>Hardware Projects</h4>
+        <p>Arduino, Sensors &amp; Servo Motors</p>
+      </div>
+
+      <div class="stat">
+        <h4>Developer Mindset</h4>
+        <p>Creative, Curious &amp; Hands-On</p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- SKILLS TEMPLATE -->
+
+<!-- SKILLS TEMPLATE -->
+<template id="tmpl-skills">
+  <div>
+    <div class="act">ACT I: WEB DEVELOPMENT</div>
+
+    <div class="fader">
+      <div>
+        <span>HTML5 — Page Structure</span>
+        <span>Hands-on</span>
+      </div>
+      <div class="bar">
+        <div class="fill" style="width:85%"></div>
+      </div>
+    </div>
+
+    <div class="fader">
+      <div>
+        <span>CSS3 — Styling &amp; Responsive Layouts</span>
+        <span>Hands-on</span>
+      </div>
+      <div class="bar">
+        <div class="fill" style="width:85%"></div>
+      </div>
+    </div>
+
+    <div class="fader">
+      <div>
+        <span>JavaScript — Interactive Features</span>
+        <span>Hands-on</span>
+      </div>
+      <div class="bar">
+        <div class="fill" style="width:75%"></div>
+      </div>
+    </div>
+
+    <div class="act" style="margin-top:1rem">
+      ACT II: SYSTEMS &amp; APPLICATION DEVELOPMENT
+    </div>
+
+    <div class="fader">
+      <div>
+        <span>PHP — Server-Side Development</span>
+        <span>Project Experience</span>
+      </div>
+      <div class="bar">
+        <div class="fill" style="width:75%"></div>
+      </div>
+    </div>
+
+    <div class="fader">
+      <div>
+        <span>Database Integration &amp; CRUD Concepts</span>
+        <span>Project Experience</span>
+      </div>
+      <div class="bar">
+        <div class="fill" style="width:70%"></div>
+      </div>
+    </div>
+
+    <div class="fader">
+      <div>
+        <span>Local Development &amp; Testing</span>
+        <span>Hands-on</span>
+      </div>
+      <div class="bar">
+        <div class="fill" style="width:80%"></div>
+      </div>
+    </div>
+
+    <div class="act" style="margin-top:1rem">
+      ACT III: HARDWARE &amp; AUTOMATION
+    </div>
+
+    <div class="fader">
+      <div>
+        <span>Arduino &amp; Sensor Integration</span>
+        <span>Project Experience</span>
+      </div>
+      <div class="bar">
+        <div class="fill" style="width:75%"></div>
+      </div>
+    </div>
+
+    <div class="fader">
+      <div>
+        <span>Servo Motor Control &amp; Prototyping</span>
+        <span>Project Experience</span>
+      </div>
+      <div class="bar">
+        <div class="fill" style="width:75%"></div>
+      </div>
+    </div>
+
+    <div class="fader">
+      <div>
+        <span>Python &amp; Serial Communication</span>
+        <span>Project Experience</span>
+      </div>
+      <div class="bar">
+        <div class="fill" style="width:70%"></div>
+      </div>
+    </div>
+
+    <div class="act" style="margin-top:1rem">
+      ACT IV: CREATIVE PROBLEM-SOLVING
+    </div>
+
+    <div class="fader">
+      <div>
+        <span>UI Design &amp; Interactive Experiences</span>
+        <span>Hands-on</span>
+      </div>
+      <div class="bar">
+        <div class="fill" style="width:80%"></div>
+      </div>
+    </div>
+
+    <p style="margin-top:1rem; opacity:.8; font-size:.85rem">
+      Skills developed through coursework, personal experimentation,
+      and hands-on academic projects.
+    </p>
+  </div>
+</template>
+
+<!-- PROJECTS TEMPLATE -->
+<template id="tmpl-projects">
+  <div>
+    <!-- PROJECT 1: SRTR -->
+    <div class="card">
+      <h3>SRTR — Select Right, Throw Right</h3>
+      
+      <p>
+        An AI-assisted, behavior-based waste segregation management
+        system designed to encourage proper waste disposal habits.
+        Users choose where to dispose of their waste, while an
+        AI-assisted camera classification system verifies whether
+        their chosen category matches the detected waste.
+      </p>
+      
+      <p>
+        The system uses three AI-verified categories:
+        biodegradable, recyclable, and non-biodegradable.
+        When the user's choice is correct, the corresponding
+        compartment lid opens through a servo motor. Incorrect
+        attempts receive immediate feedback to help users learn
+        proper segregation. The system also provides audio
+        instructions, displays Bible verses after correct disposal,
+        and records disposal attempts for monitoring.
+      </p>
+      
+      <p>
+        An administrator dashboard displays disposal history,
+        detected waste categories, attempted bins, timestamps,
+        and system status. The project integrates hardware
+        components, a webcam, AI-assisted classification,
+        a web application, and a database.
+      </p>
+      
+      <div class="tags">
+        <span class="tag">AI-Assisted Classification</span>
+        <span class="tag">PHP</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">MySQL</span>
+        <span class="tag">Arduino Uno</span>
+        <span class="tag">Servo Motors</span>
+        <span class="tag">Behavior-Based Learning</span>
+        <span class="tag">System Integration</span>
+      </div>
+    </div>
+    
+    <!-- PROJECT 2: K-POP E-COMMERCE -->
+    <div class="card">
+      <h3>K-Pop Merchandise E-Commerce Website</h3>
+      
+      <p>
+        A school project featuring an online store concept for
+        K-pop merchandise. Developed and tested locally using
+        localhost, the project gave me experience building an
+        e-commerce interface and organizing the structure of an
+        online shopping website. It has not been deployed publicly.
+      </p>
+      
+      <div class="tags">
+        <span class="tag">E-Commerce</span>
+        <span class="tag">Web Development</span>
+        <span class="tag">Localhost</span>
+        <span class="tag">School Project</span>
+      </div>
+    </div>
+    
+    <!-- PROJECT 3: ARDUINO SMOKE DETECTION -->
+    <div class="card">
+      <h3>Arduino Smoke-Detection House Prototype</h3>
+      
+      <p>
+        An Arduino-based automation prototype built around a
+        handmade cardboard house. When the smoke sensor detects
+        smoke, the system activates a buzzer alarm and triggers
+        a servo motor to open the model's door. The project
+        demonstrates how sensor input can trigger audible alerts
+        and automated mechanical movement.
+      </p>
+      
+      <div class="tags">
+        <span class="tag">Arduino</span>
+        <span class="tag">Smoke Sensor</span>
+        <span class="tag">Buzzer Alarm</span>
+        <span class="tag">Servo Motor</span>
+        <span class="tag">Automation</span>
+        <span class="tag">Physical Prototyping</span>
+      </div>
+    </div>
+    
+    <!-- PROJECT 4: INTERACTIVE PORTFOLIO -->
+    <div class="card">
+      <h3>Concert Arena Interactive Portfolio</h3>
+      
+      <p>
+        A concert-inspired developer portfolio featuring animated
+        stage elements, VIP and backstage views, an interactive
+        information screen, a backstage guest pass, and custom
+        visual effects. Built using HTML, CSS, and JavaScript,
+        the project combines creative visual design with
+        interactive web functionality to showcase my projects,
+        skills, and background.
+      </p>
+      
+      <div class="tags">
+        <span class="tag">HTML5</span>
+        <span class="tag">CSS3</span>
+        <span class="tag">JavaScript</span>
+        <span class="tag">Interactive UI</span>
+        <span class="tag">Responsive Design</span>
+        <span class="tag">Web Animation</span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<!-- SCRIPTS: KEEP THIS ORDER -->
+<script src="script.js"></script>
+<script src="concert-extras.js"></script>
+<script src="maze-game.js"></script>
+<script src="led-carousel.js"></script>
+
+
+</body>
+</html>
