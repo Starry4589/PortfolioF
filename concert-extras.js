@@ -1,3 +1,4 @@
+
 /* =========================================================
    concert-extras.js
    Load AFTER script.js
@@ -187,7 +188,7 @@
           <div class="bk-board">
             <div class="bk-h">
               <span>TOUR WALL</span>
-              <span class="bk-subtitle">draw on it</span>
+             
             </div>
 
             <div class="bk-wall" id="bkWall">
@@ -222,21 +223,21 @@
                 type="button"
                 data-t="spots"
                 aria-pressed="true"
-              >Spots</button>
+              >Spot light</button>
 
               <button
                 class="bk-btn"
                 type="button"
                 data-t="strobe"
                 aria-pressed="false"
-              >Strobe</button>
+              >Light</button>
 
               <button
                 class="bk-btn"
                 type="button"
                 data-t="pyro"
                 aria-pressed="false"
-              >Pyro</button>
+              >Confetti</button>
             </div>
 
           </div>
@@ -329,7 +330,15 @@
 
     if (rightPoster) row2.append(rightPoster);
     row2.append(stack);
+        // ID pass in the middle, Stickers on the left, Tour Wall full-width at the bottom
+    const pass = $("#postcard", back);
+    if (pass) bk.insertBefore(pass, $(".bk-col.r", bk));
 
+    const stickerPanel = $(".bk-tray", bk)?.closest(".bk-panel");
+    if (stickerPanel) $(".bk-col.l", bk).append(stickerPanel);
+
+    const board = $(".bk-board", bk);
+    if (board) bk.insertBefore(board, $("#bkDoor", bk));
     setupDrawing(bk);
     setupStickers(bk);
     setupBackstageControls(bk);
