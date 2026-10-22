@@ -107,8 +107,8 @@
    <ellipse cx="230" cy="190" rx="15" ry="19" fill="#ffffff" />
 
    <!-- Thick Upper Lash Line -->
-   <path d="M152 181 Q170 167 188 181" fill="none" stroke="#3d1446" stroke-width="4" stroke-linecap="round" />
-   <path d="M212 181 Q230 167 248 181" fill="none" stroke="#3d1446" stroke-width="4" stroke-linecap="round" />
+   <path d="M152 181 Q170 167 188 181" fill="none" stroke="#3d1446" stroke-width="3" stroke-linecap="round" />
+   <path d="M212 181 Q230 167 248 181" fill="none" stroke="#3d1446" stroke-width="3" stroke-linecap="round" />
 
    <!-- Soft Bottom Lash Accents -->
    <path d="M162 205 Q170 208 178 205" fill="none" stroke="#b35c91" stroke-width="2" opacity=".6" stroke-linecap="round" />
