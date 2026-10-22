@@ -1,4 +1,9 @@
-
+/* =========================================================
+   concert-extras.js
+   Load AFTER script.js
+   Backstage room, light board, drawing wall, stickers,
+   VIP crowd effects, and concert transitions.
+========================================================= */
 
 (() => {
   "use strict";
@@ -258,7 +263,7 @@
         </div>
 
         <button class="bk-door" id="bkDoor" type="button">
-          STAGE ➜
+          ← STAGE
         </button>
 
         <div class="bk-floor"></div>
@@ -665,7 +670,7 @@
     if (door) {
       door.addEventListener("click", () => {
         if (typeof window.setSeat === "function") {
-          window.setSeat("VIP");
+          window.setSeat("vip");
         }
       });
     }
