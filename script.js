@@ -1,5 +1,6 @@
 /* script.js — main portfolio interactions */
 
+
 (() => {
   const seatMeta = {
     vip: {
